@@ -47,6 +47,11 @@ const AppBar = () => {
                   Sign in
               </Text>
           </Link>
+          <Link to="/signup">
+              <Text style={styles.text}>
+                  Sign up
+              </Text>
+          </Link>
         </ScrollView>
       </View>;
   } else {
@@ -66,6 +71,16 @@ const AppBar = () => {
                   Sign out
               </Text>
           </Pressable>
+          <Link to="/review">
+              <Text style={styles.text}>
+                  Create a review
+              </Text>
+          </Link>
+          <Link to="/myreviews">
+              <Text style={styles.text}>
+                  My reviews
+              </Text>
+          </Link>
         </ScrollView>
       </View>;
   }

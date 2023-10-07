@@ -1,5 +1,6 @@
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, Pressable } from 'react-native';
 import Text from './Text';
+import { useNavigate } from "react-router-native";
 
 const styles = StyleSheet.create({
     logo: {
@@ -31,18 +32,22 @@ const RepositoryItem = (props) => {
         forkString = props.repo.forksCount.toString()
     }
 
+    const navigate = useNavigate();
+
     return (
-        <View style={styles.container}>
-            <Image style={styles.logo} source={props.repo.ownerAvatarUrl}></Image>
-            <Text text="main">
-                {props.repo.fullName}{"\n"}
-                {props.repo.description}{"\n"}
-                <Text style={{ backgroundColor: "lightblue" }}>{props.repo.language}</Text>{"\n"}
-                Stars: {starString}{" "}
-                Forks: {forkString}{" "}
-                Reviews: {props.repo.reviewCount}{" "}
-                Rating: {props.repo.ratingAverage}{" "}
-            </Text>
+        <View testID="repositoryItem" style={styles.container}>
+            <Pressable onPress={() => {navigate(props.repo.id)}}>
+                <Image style={styles.logo} source={props.repo.ownerAvatarUrl}></Image>
+                <Text text="main">
+                    <Text>{props.repo.fullName}{"\n"}</Text>
+                    <Text>{props.repo.description}{"\n"}</Text>
+                    <Text style={{ backgroundColor: "lightblue" }}>{props.repo.language}</Text>{"\n"}
+                    <Text>Stars: {starString}{" "}</Text>
+                    <Text>Forks: {forkString}{" "}</Text>
+                    <Text>Reviews: {props.repo.reviewCount}{" "}</Text>
+                    <Text>Rating: {props.repo.ratingAverage}{" "}</Text>
+                </Text>
+            </Pressable>
         </View>
     )
 }
